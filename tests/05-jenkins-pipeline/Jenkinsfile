@@ -1,0 +1,44 @@
+pipeline {
+    agent any // ใช้ Agent ตัวไหนก็ได้ที่ว่างอยู่
+
+    environment {
+        // ดึงค่า Config จาก Jenkins Credentials หรือ Environment
+        NODE_ENV = 'test'
+    }
+
+    stages {
+        // Stage 1: ดึงโค้ดมาจาก Git
+        stage('Checkout Code From Git') {
+            steps {
+                checkout scm // ดึงโค้ดจาก Repository ที่ตั้งค่าไว้ใน Jenkins Job
+            }
+        }
+
+        // Stage 2: รันสคริปต์เทสอัตโนมัติ
+        stage('Run Test Automate') {
+            steps {
+                script {
+                    // 1. ติดตั้ง Dependencies
+                    sh 'npm install'
+                    // 2. รัน Playwright Test
+                    sh 'npx playwright test tests/02-web-login tests/03-api-testing'
+                }
+            }
+        }
+
+        // Stage 3: ส่งผลลัพธ์กลับไปแสดงบน Jenkins
+        stage('Send Result To Jenkins') {
+            steps {
+                // เก็บ Playwright Report ไว้ใน Artifacts ของ Jenkins
+                publishHTML([
+                    allowMissing: false,
+                    alwaysLinkToLastBuild: true,
+                    keepAll: true,
+                    reportDir: 'playwright-report',
+                    reportFiles: 'index.html',
+                    reportName: 'Playwright HTML Report'
+                ])
+            }
+        }
+    }
+}

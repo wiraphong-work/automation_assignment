@@ -1,0 +1,3 @@
+testDescription,userId,expectedStatus,expectedId,expectedEmail,expectedFirstName,expectedLastName,expectedAvatar
+Get existing user Rachel,12,200,12,rachel.howell@reqres.in,Rachel,Howell,https://reqres.in/img/faces/12-image.jpg
+Get user profile but user not found,1234,404,,,,,
