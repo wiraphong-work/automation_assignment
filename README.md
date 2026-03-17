@@ -31,10 +31,22 @@
    npx playwright install
 
 🚀 How to Run
-   ข้อ 1 → node tests/01-logic-list/duplicate_check.js
-   ข้อ 2 → playwright test tests/02-web-login/login.spec.js
-   ข้อ 3 → playwright test tests/03-api-testing/api.spec.js
-   ข้อ 6 → python tests/06-logic-cipher/simple_cipher.py
+   ข้อ 1
+   ```bash
+   node tests/01-logic-list/duplicate_check.js
+
+   ```bash
+   ข้อ 2 
+   ```bash
+   playwright test tests/02-web-login/login.spec.js
+
+   ข้อ 3
+   ```bash
+   playwright test tests/03-api-testing/api.spec.js
+
+   ข้อ 6
+   ```bash
+   python tests/06-logic-cipher/simple_cipher.py
 
 ### **สำหรับ Mobile Automation (Robot Framework & Appium)
 1. ติดตั้ง Python และลง Library ที่จำเป็น: pip install robotframework-appiumlibrary
